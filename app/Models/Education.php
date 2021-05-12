@@ -26,7 +26,7 @@ class Education extends Model
      */
     public $incrementing = true;
 
-    const CREATED_AT = 'creation_date';
+    const CREATED_AT = 'created_date';
     const UPDATED_AT = 'updated_date';
     /**
      * The database connection that should be used by the model.
