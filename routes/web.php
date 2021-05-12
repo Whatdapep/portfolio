@@ -17,8 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('clearcache', function () {
+    Artisan::call('optimize:clear');
+    return view('welcome');
+});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::group(["prefix" => "profile", "middleware" => "auth"], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+require __DIR__ . '/auth.php';
