@@ -60,6 +60,7 @@ class Personal extends Model
         'facebook',
         'instagram',
         'line',
+        'twitter',
         'personal_summary',
         'personal_status',
         'updated_date',

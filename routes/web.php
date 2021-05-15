@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Profile\PersonalController;
+use App\Http\Controllers\ProfileViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,20 @@ Route::group(["prefix" => "profile", "middleware" => "auth"], function () {
     //     return view('dashboard');
     // })->name('dashboard');
 
-    Route::get("/personal", [PersonalController::class, 'index'])->name("personal");
+    // Route::resources(
+    //     'personal',
+    //     [PersonalController::class]
+    // )->except(['store', 'create']);
+
+    Route::resource('personal', PersonalController::class, ['names' => 'personal'])->except([
+        'create', 'store'
+    ]);
+    // Route::get("/personal", [PersonalController::class, 'index'])->name("personal");
 });
 
+
 require __DIR__ . '/auth.php';
+
+
+
+Route::get('/{name}', [ProfileViewController::class, 'show'])->name("profileview");

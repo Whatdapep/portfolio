@@ -9,13 +9,25 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="p-6 bg-white border-b border-gray-200 font-bold">
-                   ข้อมูลส่วนตัว
+                    Edit Personal Information.
                 </h2>
             </div>
             {{-- <x-head-label for="name" :value="__('Display Name')" /> --}}
+            {{-- @dd($personal->id) --}}
+            <form class="" action="{{ route('personal.update', ['personal' => $personal->id]) }}"
+                enctype="multipart/form-data" method="POST">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                {{-- Components form  Personal Information --}}
+                <x-profile.form.personal></x-profile.form.personal>
+                <div class="my-2 py-2 text-center">
+                    <button type="submit"
+                        class="p-3 bg-blue-300 shadow rounded-lg text-blue-800 border-2 border-blue-300 hover:bg-white hover:shadow-lg hover:rounded-xl">
+                        Update
+                    </button>
 
-            <x-profile.form.personal></x-profile.form.personal>
-            <x-profiles-head-label for="name" :value="__('Display Name in profiles')" />
+                </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

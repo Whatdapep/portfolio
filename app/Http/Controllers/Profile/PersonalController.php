@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Personal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonalController extends Controller
 {
@@ -15,7 +17,11 @@ class PersonalController extends Controller
     public function index()
     {
         //
-        return view('profiles.personal');
+        // dd(Auth::user()->id);
+        $personal = Personal::find(Auth::user()->id);
+        // dd($personal);
+        // ['personal' => $personal]
+        return view('profiles.personal', ['personal' => $personal]);
     }
 
     /**
@@ -71,6 +77,29 @@ class PersonalController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request, $id);
+        $personal = Personal::find($id);
+        if (!empty($personal)) {
+            $personal->first_name = $request->first_name;
+            $personal->last_name = $request->last_name;
+            $personal->phone_no = $request->phone_no;
+            $personal->sex = $request->sex;
+            $personal->date_of_birth = $request->date_of_birth;
+            $personal->personal_summary = $request->personal_summary;
+            $personal->website = $request->website;
+            $personal->facebook = $request->facebook;
+            $personal->twitter = $request->twitter;
+            $personal->instagram = $request->instagram;
+            $personal->github = $request->github;
+            $personal->line = $request->line;
+            if ($personal->save()) {
+                return redirect()->back();
+            } else {
+                return redirect()->back();
+            }
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
