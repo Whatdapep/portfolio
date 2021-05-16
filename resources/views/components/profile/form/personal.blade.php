@@ -161,12 +161,14 @@
         </div>
     </div>
     @push('css')
-        <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+        {{-- <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+            type="text/css" /> --}}
+        <link href="{{ asset('assets/froala_editor_3.2.6-1/css/froala_editor.min.css')}}" rel="stylesheet"
             type="text/css" />
 
     @endpush
     @push('scripts')
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/froala_editor.pkgd.min.js">
+        <script type="text/javascript" src="{{ asset('assets/froala_editor_3.2.6-1/js/froala_editor.min.js') }}">
         </script>
 
         <script>
